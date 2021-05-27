@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>我的订单</title>
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+		<link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<!-- animate CSS-->
+		<link href="asserts/css/animate.css"th:href="@{/asserts/css/animate.css}" rel="stylesheet" >
+		<!-- Icons CSS-->
+		<link href="asserts/css/icons.css" th:href="@{/asserts/css/icons.css}" rel="stylesheet">
+		<!-- Sidebar CSS-->
+		<link href="asserts/css/sidebar-menu.css" th:href="@{/asserts/css/sidebar-menu.css}" rel="stylesheet"/>
+		<!-- Custom Style-->
+		<link href="asserts/css/app-style.css" th:href="@{/asserts/css/app-style.css}" rel="stylesheet"/>
+		<!--favicon-->
+		<link rel="icon" href="asserts/img/favicon.ico" th:href="@{/asserts/img/favicon.ico}" type="image/x-icon">
+		<!-- simplebar CSS-->
+		<link href="asserts/css/simplebar.css" th:href="@{/asserts/css/simplebar.css}" rel="stylesheet"/>
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+		<link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<style>
+			td p{
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				width: 300px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+        <!--引入topbar！！！-->
+        <div th:replace="~{commons/bar::topbar}"></div>
+		<div class="container-fluid">
+			<div class="row">
+                <!--引入sidebar-->
+                <div th:replace="~{commons/bar::#sidebar(activeUri='myOder.html')}"></div>
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<h2>我的订单</h2>
+					<div class="table-responsive" style="text-align: center;">
+						<table class="table table-striped table-sm" style="text-align: center">
+							<thead>
+							<tr>
+								<th>#序号</th>
+								<th>商品名称</th>
+								<th>商品价格</th>
+								<th>商品数量</th>
+								<th>商品描述</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:if="${commodityMap.size() != 0 }" th:each="count,commodity:${commodityMap}">
+								<td th:text="${commodity.index} + 1"></td>
+								<td th:text="${commodity.current.value.name}"></td>
+								<td th:text="${commodity.current.value.price}"></td>
+								<td th:text="${counts[commodity.current.key]}"></td>
+								<td style="text-align: center"><p th:text="${commodity.current.value.note}"></p></td>
+							</tr>
+							</tbody>
+						</table>
+						<div style="text-align: center" th:if="${commodityMap.size() == 0}">
+							<img style="width: 100%;border-radius: 20px;" th:src="@{/images/shoppingCarNull.jpg}" >
+						</div>
+					</div>
+					<div style="text-align: center" th:if="${commodityMap.size() != 0}">
+						<p><h4 th:text="'总计：' + ${sumCount} + '件商品， ' + '共计： ￥' + ${sumPrice} + '元！'">您总计消费1000元，请扫描下方二维码进行付款！</h4></p>
+						<img  th:if="${commodityMap.size() != 0}" th:src="@{/images/erweima.jpg}">
+					</div>
+				</main>
+			</div>
+		</div>
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/asserts/js/jquery-3.3.1.min.js}" ></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/asserts/js/popper.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/asserts/js/bootstrap.min.js}"></script>
+		<!-- simplebar js -->
+		<script type="text/javascript" th:src="@{/asserts/js/simplebar.js}"></script>
+		<!-- sidebar-menu js -->
+		<script type="text/javascript" th:src="@{/asserts/js/sidebar-menu.js}"></script>
+		<!-- Custom scripts -->
+		<script type="text/javascript" th:src="@{/asserts/js/app-script.js}"></script>
+		<!--引入自定义的js文件-->
+		<script language = "javascript" th:src = "@{/asserts/js/myjs.js}"></script>
+		<script>
+            $(function () {
+                //搜索商品
+				searchCommodity();
+            });
+		</script>
+	</body>
+</html>

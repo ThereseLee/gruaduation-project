@@ -75,7 +75,7 @@
                     <archive>
                         <manifest>
                             <!-- 你也可以在这里自己写MainClass -->
-                            <mainClass>com.wp.demo.tool.AnasislyTypeTool</mainClass>
+                            <mainClass>AnasislyTypeTool</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

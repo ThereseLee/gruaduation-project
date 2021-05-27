@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Fobia - Bootstrap 4 Web Application UI Kit</title>
+    <!-- Bootstrap core CSS-->
+    <link href="asserts/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- animate CSS-->
+    <link href="asserts/css/animate.css"th:href="@{/asserts/css/animate.css}" rel="stylesheet" >
+    <!-- Icons CSS-->
+    <link href="asserts/css/icons.css" th:href="@{/asserts/css/icons.css}" rel="stylesheet">
+    <!--favicon-->
+    <link rel="icon" href="asserts/img/favicon.ico" th:href="@{/asserts/img/favicon.ico}" type="image/x-icon">
+    <!-- Sidebar CSS-->
+    <link href="asserts/css/sidebar-menu.css" th:href="@{/asserts/css/sidebar-menu.css}" rel="stylesheet"/>
+    <!-- Custom Style-->
+    <link href="asserts/css/app-style.css" th:href="@{/asserts/css/app-style.css}" rel="stylesheet"/>
+    <!-- simplebar CSS-->
+    <link href="asserts/css/simplebar.css" th:href="@{/asserts/css/simplebar.css}" rel="stylesheet"/>
+
+
+</head>
+
+<body>
+<!-- start loader -->
+<div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
+<!-- end loader -->
+<!-- Start wrapper-->
+<div id="wrapper" >
+    <!--Start sidebar-->
+    <!--sidebar:使用thymeleaf的th:fragment或id进行公共页面抽取！！！-->
+    <div id="sidebar" data-simplebar="" data-simplebar-auto-hide="true" >
+        <div class="brand-logo">
+            <img src="/asserts/img/logo-icon.png" class="logo-icon" alt="logo icon">
+            <h5 class="logo-text">校园二手商品交易中心</h5>
+        </div>
+        <div class="user-details">
+            <div class="media align-items-center user-pointer collapsed" data-toggle="collapse" data-target="#user-dropdown">
+                <div class="avatar"><img class="mr-3 side-user-img" src="/asserts/img/touxiang.jpg"></div>
+                <div class="media-body">
+                    <h6 class="side-user-name" th:if="${session.loginUser != null}" th:text="${session.customer.uname}" >Mark Jhonsan</h6>
+                    <a class="side-user-name" th:if="${session.loginUser == null}" th:text="请登录" href="/index.html"></a>
+                </div>
+            </div>
+            <div id="user-dropdown" class="collapse">
+                <ul class="user-setting-menu">
+                    <li><a href="/user/personalInfo"><i class="icon-user"></i>我的个人信息</a></li>
+                    <li><a href="/usr/ajax/userLogout"><i class="icon-power"></i> 退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="sidebar-menu do-nicescrol">
+            <li class="sidebar-header">MAIN NAVIGATION</li>
+            <li>
+                <a href="/shopping/goshoppingbypage" class="waves-effect">
+                    <i style="font-size:19px;margin-right:15px;" class="zmdi zmdi-layers"></i><span>二手中心</span></i>
+                </a>
+            </li>
+            <li>
+                <a href="/usr/toOrderCar" class="waves-effect">
+                    <i class="zmdi zmdi-local-grocery-store"></i>
+                    <span>我的购物车</span> </i>
+                </a>
+            </li>
+            <li>
+                <a href="/usr/ajax/toMyOrder" class="waves-effect">
+                    <i style="font-size:14px;margin-left:2px;margin-right:4px;" class="fa fa-file"></i>
+                    <span>我的订单</span>
+                    </i>
+                </a>
+            </li>
+            <li>
+                <a href="/usr/sell" class="waves-effect">
+                    <i style="margin-right:14px;" class="zmdi zmdi-shopping-basket"></i><span>我要出售</span>
+                    </i>
+                </a>
+            </li>
+            <li>
+                <a href="/usr/analysis" class="waves-effect">
+                    <i style="font-size:19px;margin-right:15px;" class="zmdi zmdi-chart"></i><span>今日排行</span></i>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/showmap/mymap}" class="waves-effect">
+                    <i style="font-size:19px;margin-right:15px;" class="zmdi zmdi-chart"></i><span>地图导航</span></i>
+                </a>
+            </li>
+            <li>
+                <a href="javaScript:void();" class="waves-effect">
+                    <i class="zmdi zmdi-account-circle"></i> <span>个人中心</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/user/viewContent"><i class="fa fa-hand-o-right"></i>管理留言</a></li>
+                    <li><a href="/user/manageMyCommodities"><i class="fa fa-hand-o-right"></i>管理出售</a></li>
+                    <!--<li><a href="/user/manageMyWantedCommodities"><i class="fa fa-hand-o-right"></i>管理求购</a></li>-->
+                    <li><a href="/usr/iwantbuy"><i class="fa fa-hand-o-right"></i>发布求购</a></li>
+                    <!--<li><a href="/user/viewwantbuy"><i class="fa fa-hand-o-right"></i>查看求购</a></li>-->
+                </ul>
+            </li>
+            <li>
+                <a href="/user/aboutUs" class="waves-effect">
+                    <i class="zmdi zmdi-accounts-alt"></i> <span>关于我们</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--End sidebar-wrapper-->
+
+    <!--Start topbar header-->
+    <header class="topbar-nav">
+        <!--topbar:使用 th:fragment="topbar"将顶部栏抽取出来，在其他页面进行引用-->
+        <nav style=" height: 60px;padding: 0px 15px;background-color:#3b5998;border-bottom: 1px solid #eaf2f9; z-index: 999;" class="navbar navbar-expand fixed-top" th:fragment="topbar">
+            <ul class="navbar-nav mr-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link toggle-menu" href="javascript:void();">
+                        <i class="icon-menu menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <form class="search-bar">
+                        <input th:id="seachCommodity" type="text" class="form-control" placeholder="请输入关键字查询">
+                        <a href="#"><i class="icon-magnifier"></i></a>
+                    </form>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav align-items-center right-nav-link">
+
+                <li class="nav-item language">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
+                        <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
+                        <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
+                        <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+                        <span class="user-profile"><img class="img-circle" src="/asserts/img/touxiang.jpg"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item user-details">
+                            <a href="javaScript:void();">
+                                <div class="media">
+                                    <div class="avatar"><img class="align-self-start mr-3" src="/asserts/img/touxiang.jpg"></div>
+                                    <div class="media-body">
+                                        <h6 class="side-user-name" th:if="${session.loginUser != null}" th:text="${session.customer.uname}" ></h6>
+                                        <a style="line-height: 48px;" class="side-user-name" th:if="${session.loginUser == null}" th:text="请登录" href="/index.html"></a>
+                                        <p class="user-subtitle" th:if="${session.loginUser != null}" th:text="${session.customer.address}"></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item"><a href="/user/personalInfo"><i class="icon-wallet mr-2"></i>个人信息</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item"><a href="/usr/ajax/userLogout"><i class="icon-power mr-2"></i>退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!--End topbar header-->
+    <div class="clearfix"></div>
+</div>
+
+
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script type="text/javascript"  th:src="@{/asserts/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript"  th:src="@{/asserts/js/popper.min.js}"></script>
+<script type="text/javascript"  th:src="@{/asserts/js/bootstrap.min.js}"></script>
+<!-- simplebar js -->
+<script type="text/javascript" th:src="@{/asserts/js/simplebar.js}"></script>
+<!-- sidebar-menu js -->
+<script type="text/javascript" th:src="@{/asserts/js/sidebar-menu.js}"></script>
+<!-- Custom scripts -->
+<script type="text/javascript" th:src="@{/asserts/js/app-script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bigdataanasisly/bigdataanasisly.iml" filepath="$PROJECT_DIR$/bigdataanasisly/bigdataanasisly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/gruaduation-project1.iml" filepath="$PROJECT_DIR$/web/gruaduation-project1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gruaduation-project1 (1).iml" filepath="$PROJECT_DIR$/gruaduation-project1 (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/mr/mr.iml" filepath="$PROJECT_DIR$/mr/mr.iml" />
+    </modules>
+  </component>
+</project>
